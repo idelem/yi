@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Title</title> <!-- Add desired title here -->
+  <!-- Add any additional metadata here -->
+<style>
+    :root {
+      --bg-color: #171717;
+      --rectangle: #ccc;
+      --rectangle-width: 200px;
+      --rectangle-height: 30px;
+      --rectangle-margin: 20px;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--rectangle);
+        height: 100%;
+        margin: 0;
+    }
+
+    /* CSS Flexbox to create a container for the rectangles */
+    .rectangle-container {
+      display: flex;
+      flex-direction: column-reverse; /* changed to reverse order */
+      align-items: center;
+      justify-content: center; /* added to center vertically */
+      height: 100%; /* added to center vertically */
+      background-color: var(--bg-color);
+    }
+
+
+    /* Styling for the rectangles */
+    .rectangle {
+      width: var(--rectangle-width);
+      height: var(--rectangle-height);
+      margin-bottom: var(--rectangle-margin);;
+      cursor: pointer;
+      background-color: var(--rectangle);
+    }
+
+
+    /* Styling for the broken rectangle */
+    .rectangle-half {
+      width: var(--rectangle-width);
+      height: var(--rectangle-height);
+      margin-bottom: var(--rectangle-margin);
+      cursor: pointer;
+      background-image: linear-gradient(to right, var(--rectangle) 45%, transparent 45%, transparent 55%, var(--rectangle) 55%);
+    }
+  </style>
+
+
+</head>
+<body>
+  <!-- Using CSS Flexbox to create a container for the rectangles -->
+  <div class="rectangle-container">
+    <!-- Creating six rectangle elements with onclick event -->
+    <div class="rectangle" id="rectangle1"></div>
+    <div class="rectangle" id="rectangle2"></div>
+    <div class="rectangle" id="rectangle3"></div>
+    <div class="rectangle" id="rectangle4"></div>
+    <div class="rectangle" id="rectangle5"></div>
+    <div class="rectangle" id="rectangle6"></div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1>label</h1>
+    <p>description</p>
+  </div>
+<script src="./data.js"></script>
+<script>
+    const rectangles = document.querySelectorAll('.rectangle');
+    let binaryNumber = 0b111111;
+    rectangles.forEach((rectangle, index) => {
+      rectangle.onclick = function() {
+        if (rectangle.classList.contains('rectangle')) {
+          rectangle.classList.remove('rectangle');
+          rectangle.classList.add('rectangle-half');
+          binaryNumber ^= (1 << index);
+        } else {
+          rectangle.classList.remove('rectangle-half');
+          rectangle.classList.add('rectangle');
+          binaryNumber ^= (1 << index);
+        }
+        // document.getElementById("binaryNumber").innerHTML = binaryNumber;
+      }
+    });
+</script>
+
+
+</body>
+
+
+</html>
+
+
